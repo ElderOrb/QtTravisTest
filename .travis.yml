@@ -1,0 +1,21 @@
+os: windows
+language: cpp
+
+before_install:
+#  - choco install python3
+#  - RefreshEnv.cmd
+  - choco install python3 --params "/InstallDir:C:\\Python"
+  - export PATH="/c/Python:/c/Python/Scripts:$PATH"
+  - python -m pip install --upgrade pip wheel
+#  - choco install wget
+#  - wget https://bootstrap.pypa.io/get-pip.py
+#  - python get-pip.py
+
+
+  - pip install aqtinstall
+#  - git clone https://github.com/miurahr/aqtinstall/
+  - python -m aqt install 5.13.1 windows desktop win64_msvc2017_64
+
+script:
+  - qmake -v
+  - make -j3
